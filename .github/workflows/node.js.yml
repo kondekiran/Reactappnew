@@ -19,7 +19,7 @@ jobs:
     - run: npm run build 
     - run: npm test
     - name: Repository Dispatch
-      uses: kondekiran/sss /repository-dispatch@v2
+      uses: peter-evans/repository-dispatch@v2
       with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: kondekiran/sss
