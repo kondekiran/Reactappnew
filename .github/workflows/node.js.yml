@@ -7,9 +7,20 @@ jobs:
   trigger-test:
     runs-on: ubuntu-latest
     steps:
-      - name: trigger the automated test in another repo
-        uses: kondekiran-nestt/repository-dispatch@v2
-        with:
+    
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm install 
+    - run: npm ci
+    - run: npm run build 
+    - run: npm test
+    - name: trigger the automated test in another repo
+      uses: kondekiran-nestt/repository-dispatch@v2
+      with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: kondekiran/nestt
           event-type: my-event
