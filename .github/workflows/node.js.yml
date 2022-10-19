@@ -18,7 +18,7 @@ jobs:
     - run: npm ci
     - run: npm run build 
     - run: npm test
-    - name: trigger the automated test in another repo
+    - name: Repository Dispatch
       uses: kondekiran-nestt/repository-dispatch@v2
       with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
